@@ -198,7 +198,7 @@ const Page = () => {
                                     <h3 className="font-semibold mb-2">
                                         {index + 1}. {ans.question}
                                     </h3>
-                                    <p className="text-blue-700">
+                                    <p className="text-chart-2">
                                         Your Answer:{' '}
                                         <span className="font-medium">{ans.answer}</span>
                                     </p>
@@ -260,7 +260,7 @@ const Page = () => {
                             <DialogHeader>
                                 <DialogTitle>💡 Hint</DialogTitle>
                             </DialogHeader>
-                            <p className="text-base text-gray-700 mt-2">
+                            <p className="text-base text-foreground mt-2">
                                 {currentQuestion.hint}
                             </p>
                         </DialogContent>
@@ -269,7 +269,7 @@ const Page = () => {
 
                 <CardContent className="h-full w-full flex flex-col items-center justify-center gap-6">
                     {/* Question */}
-                    <div className="h-[15vh] w-full flex items-center justify-center p-2 bg-amber-100 text-base text-center rounded-lg">
+                    <div className="h-[15vh] w-full flex items-center justify-center p-2 bg-amber-100 text-black text-base text-center rounded-lg">
                         {currentQuestion.question}
                     </div>
 
