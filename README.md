@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Questionaire — Marketing Insights Form
 
-## Getting Started
+A simple Next.js 14 project that helps users answer marketing-related questions, saves their responses, and emails them a personalized summary.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+🏠 Two pages
+
+``` bash
+/ → Home page (start or login)
+/questions → Marketing questionnaire (protected route)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔐 JWT Authentication
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Users cannot access /questions without a valid JWT token.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🧾 Interactive MCQ-style questionnaire
 
-## Learn More
+Users answer marketing-related questions with hints and multiple-choice options.
 
-To learn more about Next.js, take a look at the following resources:
+Includes “Next”, “Previous”, and “Hint” buttons for smooth navigation.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ✉️ Email submission
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Upon completion, the user’s responses are sent to their registered email.
 
-## Deploy on Vercel
+### ⚡ Middleware protection
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Ensures /questions is accessible only when a valid JWT token is set via cookies.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🎨 Modern UI
+
+Built using Tailwind CSS and Shadcn/UI components.
+
+### 🧩 Tech Stack
+
+Next.js 14 (App Router)
+
+TypeScript
+
+Tailwind CSS
+
+Shadcn/UI
+
+JWT (jsonwebtoken)
+
+Nodemailer (for email sending)
+
+📂 Project Structure
+
+```
+questionaire/
+├── app/
+│   ├── page.tsx                 # Home page ('/')
+│   ├── questions/
+│   │   └── page.tsx             # Questionnaire page ('/questions')
+│   │── api/
+│   │   └── auth/
+│   │       └── route.ts         # API endpoint to handle login
+│   └── data/
+│           └── route.ts         # API endpoint to handle submit
+├── proxy.ts                # JWT-based route protection (middleware)
+├── components/                  # UI components (Card, Button, Dialog, etc.)
+├── package.json
+└── README.md
+```
+
+### ⚙️ Environment Variables
+
+Create a .env.local file in the project root with the following keys:
+
+```
+DOMAIN=<Frontend_URL>
+APP_NAME=<Name_of_Website>
+JWT_SECRET=<secret_phrase>
+EMAIL_ID=<email_id_for_smtp>
+EMAIL_PASSWORD=<email_id_password>
+```
+
+
+💡 For Gmail users, use a Google App Password, not your regular password.
+Create one here
+.
+
+
+### 🧠 Questionnaire Page (/questions)
+
+Displays multiple-choice questions related to marketing.
+
+Provides hints via a 💡 button.
+
+Allows navigation through Next and Previous buttons.
+
+At the end, shows an Answer Summary and triggers an email via API.
+
+### 📦 Installation & Setup
+#### Clone repository
+
+``` bash
+git clone https://github.com/Kushal-Harsora/questionaire.git
+```
+
+#### Navigate into project
+
+```
+cd questionaire
+```
+
+#### Install dependencies
+
+```
+npm install
+```
+
+#### Run the app
+
+```
+npm run dev
+```
+Visit 👉 http://localhost:3000
+
+## 👨‍💻 Author
+
+- [@KushalHarsora](https://github.com/KushalHarsora)
