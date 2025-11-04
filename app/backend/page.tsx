@@ -89,7 +89,7 @@ const DashboardPage = () => {
                 </div>
 
                 <div className="mb-4">
-                    <h3 className="font-semibold mb-2">Transcript:</h3>
+                    <h3 className="font-semibold text-center mb-2">Transcript</h3>
                     <div className=" py-4 space-y-3 max-h-80 overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-muted scrollbar-track-gray-200">
                         {transcript.map((msg, idx) => (
                             <div
