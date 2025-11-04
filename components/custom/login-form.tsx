@@ -65,7 +65,7 @@ export function LoginForm({
                 toast.success("Login Successful!");
                 console.log(data);
                 setTimeout(() => {
-                    router.push("/questions");
+                    router.push("/form");
                 }, 500);
             }
         } catch (error) {
