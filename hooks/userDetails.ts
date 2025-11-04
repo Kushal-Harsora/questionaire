@@ -1,8 +1,10 @@
+// System Components Import
 import axios, { AxiosResponse } from "axios"
 import React from "react"
 import { toast } from "sonner"
 
 
+// Custom hook to get the user email from token
 export function useEmail() {
   const [userEmail, setUserEmail] = React.useState<string>("");
 

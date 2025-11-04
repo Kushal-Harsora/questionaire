@@ -1,9 +1,19 @@
 'use client';
 
-import { CalendarForm } from "@/components/custom/calendar-form";
-import { DevModeToggle } from "@/components/custom/dev-toggle-theme";
+// System Components Import
+import z from 'zod';
+import React from "react";
+import axios, { AxiosResponse } from "axios"
+import { useRouter } from "next/navigation"
+import { Controller, useForm } from "react-hook-form"
+import { useEmail } from "@/hooks/userDetails"
+import { zodResolver } from "@hookform/resolvers/zod"
+
+// UI Components Import
+import { CalendarForm } from "@/components/custom/calendar-form"
+import { DevModeToggle } from "@/components/custom/dev-toggle-theme"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import {
     Field,
     FieldDescription,
@@ -13,19 +23,12 @@ import {
     FieldSet,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group";
-import { Spinner } from "@/components/ui/spinner";
-import { useEmail } from "@/hooks/userDetails";
-import { zodResolver } from "@hookform/resolvers/zod"
-import axios, { AxiosResponse } from "axios"
-import { useRouter } from "next/navigation"
-import React from "react";
-import { Controller, useForm } from "react-hook-form"
+import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group"
+import { Spinner } from "@/components/ui/spinner"
 import { toast } from "sonner"
-import z from 'zod';
 
 
-// Login Schema
+// Form Schema
 const formSchema = z.object({
     name: z.string()
         .min(1, "Name must be at least 8 characters."),
@@ -43,6 +46,7 @@ const formSchema = z.object({
         .max(100, "Remark must be at most 100 characters."),
 
 });
+
 
 export default function Form() {
 
@@ -75,7 +79,6 @@ export default function Form() {
 
     // Handle Submit
     async function onSubmit(values: z.infer<typeof formSchema>) {
-
 
         setLoading(true);
 

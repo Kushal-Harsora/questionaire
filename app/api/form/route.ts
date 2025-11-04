@@ -1,3 +1,4 @@
+// Helper Libs
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 import { formatInTimeZone } from "date-fns-tz"
@@ -53,19 +54,33 @@ END:VCALENDAR
                 user: process.env.EMAIL_ID,
                 pass: process.env.EMAIL_PASSWORD,
             },
-        })
+        });
+
+        const formattedDate = startLocal.toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        });
 
         await transporter.sendMail({
             from: `${process.env.APP_NAME} <${process.env.EMAIL_ID}>`,
             to: email,
-            subject: "Your Booking Confirmation",
-            text: `Hello ${name},\n\nYour booking is confirmed.\n\nDate: ${startLocal.toDateString()}\nTime: ${timeSlot.startTime} - ${timeSlot.endTime} (${timeZone})\n\nRemark: ${remark}`,
+            subject: `Your Consultation Call Confirmation with ${process.env.APP_NAME}`,
+            text: `Hello ${name},
+
+                   Your consultation call with ${process.env.APP_NAME} is confirmed.
+
+                   Date: ${formattedDate}
+                   Time: ${timeSlot.startTime} - ${timeSlot.endTime} (${timeZone})
+
+                   Remark: ${remark}`,
             icalEvent: {
                 filename: "invite.ics",
                 method: "REQUEST",
                 content: icsContent,
             },
-        })
+        });
 
         const response = NextResponse.json({ message: "Form Submitted Successfully!" }, { status: 200 });
         response.cookies.set("token", "", {
